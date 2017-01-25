@@ -6,8 +6,9 @@
   Claim Submissions
 <% end %>
 
-<%= form_tag(claim_submissions_show_path, :method => "get") do %>
-  <%= label_tag(:email, "Email:") %>
-  <%= text_field_tag :email  %>
-  <%= submit_tag "Search"  %>
+<%= bootstrap_form_tag url: claim_submissions_path do |f| %>
+	<%= f.email_field :email, value: '' %>
+	<%= f.submit %>
 <% end %>
+
+
