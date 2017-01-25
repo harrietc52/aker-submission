@@ -1,0 +1,13 @@
+<% content_for :title_button do %>
+  <%= link_to 'To Submission', material_submissions_path, class: 'btn btn-info vcenter', style: 'margin-top: 28px' %>
+<% end %>
+
+<% content_for :main_title do %>
+  Claim Submissions
+<% end %>
+
+<%= form_tag(claim_submissions_show_path, :method => "get") do %>
+  <%= label_tag(:email, "Email:") %>
+  <%= text_field_tag :email  %>
+  <%= submit_tag "Search"  %>
+<% end %>
