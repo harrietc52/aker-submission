@@ -6,9 +6,20 @@
   Claim Submissions
 <% end %>
 
-<%= bootstrap_form_tag url: claim_submissions_path do |f| %>
-	<%= f.email_field :email, value: '' %>
-	<%= f.submit %>
-<% end %>
+<!-- %= react_component('HelloMessage', {name: 'John'}, {prerender: true}) % -->
 
+<div class="claiming-display">
+  <div class="email-input">
+    <%= bootstrap_form_tag(url: find_submissions_by_user_path, remote: true) do |f| %>
+    	<%= f.email_field :email, value: 'ckennedy@topdrive.gov' %>
+    	<%= f.submit %>
+    <% end %>
+  </div>
 
+  <div class="submissionsList"></div>
+
+<script type="text/javascript">
+
+</script>
+
+</div>

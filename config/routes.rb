@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   end
   resources :claim_submissions
 
+  post '/find_submissions_by_user', to: 'claim_submissions#find_submissions_by_user'
+
 end
