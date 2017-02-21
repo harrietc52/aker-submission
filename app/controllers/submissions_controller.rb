@@ -11,6 +11,11 @@ class SubmissionsController < ApplicationController
 
   def update
     @status_success = material_submission.update_attributes(material_submission_params)
+    if @status_success && first_step?
+      # Creation of empty container
+      Container.create_container(labware_type_params)
+    end
+
     if @status_success && last_step?
       materials = []
       material_submission.labwares.each do |lw|
@@ -111,6 +116,12 @@ private
   def ownership_set_params(set_uuid)
     owner = material_submission.email
     {model_id: set_uuid, model_type: 'set', owner_id: owner}
+  end
+
+  def labware_type_params
+    labware_type = material_submission.labware_type
+    {num_of_rows: labware_type.x_dimension_size, num_of_cols: labware_type.y_dimension_size,
+      row_is_alpha: labware_type.x_dimension_is_alpha, col_is_alpha: labware_type.y_dimension_is_alpha}
   end
 
 end
