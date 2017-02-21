@@ -13,7 +13,10 @@ class SubmissionsController < ApplicationController
     @status_success = material_submission.update_attributes(material_submission_params)
     if @status_success && first_step?
       # Creation of empty container
-      Container.create_container(labware_type_params)
+      uuids = []
+      material_submission.no_of_labwares_required.times do
+        uuids.append(Container.create_container(labware_type_params))
+      end
     end
 
     if @status_success && last_step?
