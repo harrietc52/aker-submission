@@ -78,7 +78,7 @@ class MaterialSubmission < ApplicationRecord
 
   def labwares_attributes=(params)
     add_to_labwares(params.values.map do |labware_attrs|
-      labware = Labware.find(labware_attrs["uuid"])
+      labware = MatconClient::Container.find(labware_attrs["uuid"])
       labware.update(labware_attrs)
       labware
     end)
@@ -111,7 +111,7 @@ class MaterialSubmission < ApplicationRecord
 
   def each_labware_has_biomaterial
     unless labwares.all? { |labware| labware.biomaterials.count > 0 }
-      errors.add(:labwares, "must each have at least one Biomaterial")
+      errors.add(:labwares, "must each have at least one biomaterial")
     end
   end
 

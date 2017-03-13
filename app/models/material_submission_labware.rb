@@ -10,12 +10,13 @@ class MaterialSubmissionLabware < ApplicationRecord
 
   def self.new_list(params_list)
     params_list.map do |params|
-      create({:labware_id =>MaterialServiceClient::Container.post(params)['_id'] })
+      debugger
+      create({:labware_id => MatconClient::Container.create(params).id })
     end
   end
 
   def labware
-    @labware ||= Labware.new(MaterialServiceClient::Container.get(labware_id))
+    @labware ||= MatconClient::Container.find(labware_id)
   end
 
   def barcode

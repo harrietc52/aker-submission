@@ -9,6 +9,16 @@ GIT
       activesupport (> 4.2, < 6)
 
 GIT
+  remote: git://github.com/sanger/aker-matcon-client.git
+  revision: 37d687a7b3881a7b800a2ea069c31886a8bbba48
+  specs:
+    matcon_client (0.1.0)
+      activemodel
+      activesupport
+      faraday
+      faraday_middleware
+
+GIT
   remote: git://github.com/sanger/aker-set-client.git
   revision: 93853e389b78ea99346edc2f4f42904aa58e18b2
   specs:
@@ -21,13 +31,6 @@ GIT
   specs:
     aker-study-client (0.1.0)
       json_api_client
-
-GIT
-  remote: git://github.com/sanger/material_service_client_gem.git
-  revision: f306c2275ab22783349a3c389265be6552e82ce6
-  specs:
-    material_service_client (1.0.0)
-      faraday (~> 0.11.0)
 
 GIT
   remote: git://github.com/sanger/pmb-client.git
@@ -408,7 +411,7 @@ DEPENDENCIES
   json-schema
   launchy
   listen (~> 3.0.5)
-  material_service_client!
+  matcon_client!
   pg
   pmb-client (= 0.1.0)!
   poltergeist

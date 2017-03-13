@@ -1,5 +1,5 @@
 require 'pry'
-require 'material_service_client'
+require 'aker-matcon-client'
 
 class Biomaterial
   include ActiveModel::Model
@@ -10,7 +10,7 @@ class Biomaterial
   def persisted?
     false
   end
- 
+
   def id
     nil
   end

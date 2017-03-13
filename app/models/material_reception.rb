@@ -18,11 +18,11 @@ class MaterialReception < ApplicationRecord
 
   def labware
     return nil if labware_id.nil?
-    Labware.find(labware_id)
+    MatconClient::Container.find(labware_id)
   end
 
   def barcode_value=(barcode)
-    self.labware_id = Labware.with_barcode(barcode).first.uuid
+    self.labware_id = MatconClient::Container.where(barcode: barcode).first.uuid
   end
 
   def validate_barcode_printed
@@ -39,7 +39,7 @@ class MaterialReception < ApplicationRecord
   def presenter
     if invalid?
       return {:error => 'Cannot find the barcode'} unless barcode_value
-      return {:error => 'Labware already received'} if labware_already_received?    
+      return {:error => 'Labware already received'} if labware_already_received?
       return {:error => 'This barcode has not been printed yet. Please contact the administrator'} unless labware.barcode_printed?
     else
       {

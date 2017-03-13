@@ -6,7 +6,7 @@ def wells_attributes_for(plate)
     memo[index.to_s] = {
       #:id => well.id.to_s,
       :position => well.address,
-      :biomaterial_attributes => well.biomaterial_id.nil? ? Biomaterial.new : Biomaterial.find(well.biomaterial_id)
+      :biomaterial_attributes => well.biomaterial_id.nil? ? MatconClient::Material.new : MatconClient::Material.find(well.biomaterial_id)
     }
     memo
   end

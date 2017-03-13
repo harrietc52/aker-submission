@@ -26,8 +26,8 @@ class MaterialReceptionsController < ApplicationController
   end
 
   def set_labware
-    @labware = Labware.with_barcode(material_reception_params[:barcode_value]).first
-    @labware_id = @labware ? @labware.uuid : nil
+    @labware = MatconClient::Container.where(barcode: material_reception_params[:barcode_value]).first
+    @labware_id = @labware&.uuid
   end
 
 end

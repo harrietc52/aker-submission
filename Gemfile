@@ -48,7 +48,7 @@ gem 'zipkin-tracer'
 
 gem 'aker-set-client', github: 'sanger/aker-set-client'
 gem 'aker-study-client', github: 'sanger/aker-study-client'
-gem 'material_service_client', github: 'sanger/material_service_client_gem'
+gem 'matcon_client', github: 'sanger/aker-matcon-client'
 
 gem 'bootstrap-table-rails'
 
