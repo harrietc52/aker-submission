@@ -10,7 +10,6 @@ class MaterialSubmissionLabware < ApplicationRecord
 
   def self.new_list(params_list)
     params_list.map do |params|
-      debugger
       create({:labware_id => MatconClient::Container.create(params).id })
     end
   end

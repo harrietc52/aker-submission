@@ -79,7 +79,8 @@ class MaterialSubmission < ApplicationRecord
   def labwares_attributes=(params)
     add_to_labwares(params.values.map do |labware_attrs|
       labware = MatconClient::Container.find(labware_attrs["uuid"])
-      labware.update(labware_attrs)
+      labware.update_attributes(labware_attrs)
+      labware.save
       labware
     end)
   end

@@ -90,8 +90,8 @@
               <tbody>
 
 
-              <% labware_fields.object.wells.each do |well| %>
-                <%= labware_fields.fields_for :wells, well do |well_fields| %>
+              <% labware_fields.object.slots.each do |well| %>
+                <%= labware_fields.fields_for :slots, well do |well_fields| %>
                   <!--  %= react_component 'SchemaForm', {} % -->
                   <tr>
                     <td><%= labware_fields.object.barcode %></td>
@@ -101,10 +101,12 @@
                       <%= well_fields.object.position %>
                     </td>
 
-                    <% biomaterial = well_fields.object.biomaterial_id.nil? ? Biomaterial.new : well_fields.object.biomaterial %>
-                    <% well_fields.object.biomaterial_id = biomaterial.uuid if well_fields.object.biomaterial_id.nil? %>                
+                    <% material = well_fields.object.material_id.nil? ? MatconClient::Material.new({
+                      :id => nil, :supplier_name => nil, :donor_name => nil, :gender => nil, 
+                      :common_name => nil, :phenotype => nil }) : well_fields.object.material %>
+                    <% well_fields.object.material = material if well_fields.object.empty? %>                
 
-                    <%= well_fields.fields_for :biomaterial, biomaterial do |bm_fields| %>
+                    <%= well_fields.fields_for :biomaterial, material do |bm_fields| %>
                       <td data-psd-schema-validation-name="supplier_name"><%= bm_fields.text_field :supplier_name, hide_label: true %></td>
                       <td data-psd-schema-validation-name="donor_name"><%= bm_fields.text_field :donor_name, hide_label: true %></td>
                       <td data-psd-schema-validation-name="gender"><%= bm_fields.text_field :gender, hide_label: true %></td>

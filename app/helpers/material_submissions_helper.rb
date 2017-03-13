@@ -1,12 +1,12 @@
 module MaterialSubmissionsHelper
-def wells_attributes_for(plate)
+def slots_attributes_for(plate)
   #debugger
-  plate.wells.each_with_index.reduce({}) do |memo, list|
-    well,index = list[0],list[1]
+  plate.slots.each_with_index.reduce({}) do |memo, list|
+    slot,index = list[0],list[1]
     memo[index.to_s] = {
-      #:id => well.id.to_s,
-      :position => well.address,
-      :biomaterial_attributes => well.biomaterial_id.nil? ? MatconClient::Material.new : MatconClient::Material.find(well.biomaterial_id)
+      #:id => slot.id.to_s,
+      :position => slot.address,
+      :biomaterial_attributes => slot.material_id.nil? ? MatconClient::Material.new : MatconClient::Material.find(slot.material_id)
     }
     memo
   end
@@ -18,7 +18,7 @@ def plate_attributes_for(labwares)
     mlabware[plate_idx.to_s] = {
       :id => plate.id.to_s,
       :barcode => plate.barcode,
-      :wells_attributes => wells_attributes_for(plate)
+      :slots_attributes => slots_attributes_for(plate)
     }
   end
   mlabware
